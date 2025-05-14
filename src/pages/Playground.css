@@ -1,0 +1,36 @@
+/* src/pages/Playground.css */
+.playground {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.playground-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 30px;
+}
+
+.visualization-placeholder,
+.memory-placeholder,
+.trace-placeholder {
+    background-color: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+}
+
+.visualization-placeholder:hover,
+.memory-placeholder:hover,
+.trace-placeholder:hover {
+    transform: translateY(-4px);
+}
+
+.visualization-placeholder h3,
+.memory-placeholder h3,
+.trace-placeholder h3 {
+    color: #6B48FF;
+    margin-bottom: 15px;
+    font-weight: 600; }

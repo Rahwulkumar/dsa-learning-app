@@ -1,0 +1,20 @@
+/* src/styles/App.css */
+.app {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+    background: linear-gradient(90deg, #6B48FF, #00D4FF);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    color: white;
+    font-weight: 700;
+    font-size: 2.2rem; }

@@ -1,0 +1,51 @@
+/* src/components/CodeEditor/CodeEditor.css */
+.code-editor {
+    background-color: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+}
+
+.code-editor:hover {
+    transform: translateY(-4px);
+}
+
+.code-editor h3 {
+    color: #6B48FF;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+button {
+    margin-top: 15px;
+    padding: 12px 24px;
+    background-color: #6B48FF;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover:not(:disabled) {
+    background-color: #5439CC;
+}
+
+button:disabled {
+    background-color: #B0B0B0;
+    cursor: not-allowed;
+}
+
+.output {
+    margin-top: 15px;
+    padding: 15px;
+    background-color: #F7F7FF;
+    border-radius: 8px;
+    border: 1px solid #E0E0FF;
+    max-height: 150px;
+    overflow-y: auto;
+    font-size: 0.9rem;
+    color: #1A1A3D; }
