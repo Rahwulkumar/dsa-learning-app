@@ -1,11 +1,38 @@
+/* src/styles/App.css */
 .app {
-  font-family: Arial, sans-serif;
-  max-width: 1200px;
-  margin: 0 auto;
+  font-family: 'Inter', sans-serif;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  min-height: 100vh;
   padding: 20px;
 }
 
 header {
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
+}
+
+header h1 {
+  color: #6B48FF;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.nav-link {
+  color: #00D4FF;
+  font-weight: 500;
+  text-decoration: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.nav-link:hover {
+  background-color: #6B48FF;
+  color: white;
 }

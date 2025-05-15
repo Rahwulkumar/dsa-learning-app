@@ -1,24 +1,19 @@
-// src/components/PrimaryVisualization/PrimaryVisualization.jsx
+// src/components/SearchingVisualization/SearchingVisualization.jsx
 import { useEffect, useRef, useState } from 'react';
 import * as d3 from 'd3';
-import './PrimaryVisualization.css';
+import './SearchingVisualization.css';
 
-function PrimaryVisualization({ events }) {
+function SearchingVisualization({ events }) {
   const svgRef = useRef();
   const [currentStep, setCurrentStep] = useState(0);
 
   useEffect(() => {
-    if (!events || events.length === 0) {
-      console.log('No events to visualize');
-      return;
-    }
+    if (!events || events.length === 0) return;
 
-    let arrayState = [];
-    for (let i = 0; i <= currentStep && i < events.length; i++) {
-      if (events[i].type === 'array_state') {
-        arrayState = events[i].data;
-      }
-    }
+    const event = events[currentStep % events.length];
+    const arrayState = event.data;
+    const currentIndex = event.currentIndex;
+    const found = event.found;
 
     const svg = d3.select(svgRef.current);
     svg.selectAll('*').remove();
@@ -40,12 +35,13 @@ function PrimaryVisualization({ events }) {
       .append('rect')
       .attr('width', boxSize)
       .attr('height', boxSize)
-      .attr('fill', '#00D4FF')
+      .attr('fill', (d, i) =>
+        i === currentIndex ? (found ? '#FFD166' : '#FF5555') : '#00D4FF'
+      )
       .attr('stroke', '#1A1A3D')
       .attr('stroke-width', 2)
       .transition()
-      .duration(500)
-      .attr('x', 0);
+      .duration(500);
 
     boxes
       .append('text')
@@ -77,8 +73,8 @@ function PrimaryVisualization({ events }) {
   }, [events]);
 
   return (
-    <div className="primary-visualization">
-      <h3>Array Visualization</h3>
+    <div className="searching-visualization">
+      <h3>Searching Visualization</h3>
       <svg ref={svgRef} style={{ border: '1px solid #ccc', minHeight: '120px' }}></svg>
       <div className="controls">
         <button onClick={() => setCurrentStep((prev) => Math.max(0, prev - 1))}>
@@ -92,4 +88,4 @@ function PrimaryVisualization({ events }) {
   );
 }
 
-export default PrimaryVisualization;
+export default SearchingVisualization;

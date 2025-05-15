@@ -1,0 +1,39 @@
+/* src/components/LinkedListVisualization/LinkedListVisualization.css */
+.linked-list-visualization {
+    background-color: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+}
+
+.linked-list-visualization:hover {
+    transform: translateY(-4px);
+}
+
+.linked-list-visualization h3 {
+    color: #6B48FF;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.controls {
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+}
+
+.controls button {
+    padding: 10px 20px;
+    background-color: #6B48FF;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.controls button:hover {
+    background-color: #5439CC; }
