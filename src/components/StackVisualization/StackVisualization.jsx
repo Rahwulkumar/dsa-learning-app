@@ -1,25 +1,19 @@
-// src/components/PrimaryVisualization/PrimaryVisualization.jsx
+// src/components/StackVisualization/StackVisualization.jsx
 import { useEffect, useRef, useState } from 'react';
 import * as d3 from 'd3';
-import './PrimaryVisualization.css';
+import './StackVisualization.css';
 
-function PrimaryVisualization({ events }) {
+function StackVisualization({ events }) {
   const svgRef = useRef();
   const [currentStep, setCurrentStep] = useState(0);
 
   useEffect(() => {
     if (!events || events.length === 0) return;
 
-    const event = events[currentStep % events.length];
-    let arrayState = event.type === 'array_state' ? event.data : [];
-    let highlightIndex = null;
-    let highlightColor = '#FFD166'; // Default yellow for search/update
-
-    if (event.type === 'highlight') {
-      arrayState = events.find(e => e.type === 'array_state')?.data || [];
-      highlightIndex = event.index;
-      if (event.action === 'search' && highlightIndex === null) {
-        highlightColor = '#FF5555'; // Red if not found
+    let stackState = [];
+    for (let i = 0; i <= currentStep && i < events.length; i++) {
+      if (events[i].type === 'stack_state') {
+        stackState = events[i].data;
       }
     }
 
@@ -27,7 +21,7 @@ function PrimaryVisualization({ events }) {
     svg.selectAll('*').remove();
 
     const width = 600;
-    const height = 120;
+    const height = 300;
     const boxSize = 50;
     const margin = { top: 20, right: 20, bottom: 20, left: 20 };
 
@@ -35,15 +29,15 @@ function PrimaryVisualization({ events }) {
 
     const boxes = svg
       .selectAll('g')
-      .data(arrayState)
+      .data(stackState)
       .join('g')
-      .attr('transform', (d, i) => `translate(${margin.left + i * (boxSize + 5)}, ${margin.top})`);
+      .attr('transform', (d, i) => `translate(${margin.left}, ${height - margin.bottom - (i + 1) * (boxSize + 5)})`);
 
     boxes
       .append('rect')
       .attr('width', boxSize)
       .attr('height', boxSize)
-      .attr('fill', (d, i) => (i === highlightIndex ? highlightColor : '#00D4FF'))
+      .attr('fill', '#00D4FF')
       .attr('stroke', '#1A1A3D')
       .attr('stroke-width', 2)
       .transition()
@@ -62,12 +56,13 @@ function PrimaryVisualization({ events }) {
 
     boxes
       .append('text')
-      .attr('x', boxSize / 2)
-      .attr('y', boxSize + 15)
-      .attr('text-anchor', 'middle')
+      .attr('x', boxSize + 15)
+      .attr('y', boxSize / 2)
+      .attr('text-anchor', 'start')
+      .attr('dominant-baseline', 'middle')
       .attr('fill', '#6B48FF')
       .attr('font-size', '12px')
-      .text((d, i) => i);
+      .text((d, i) => `Index: ${stackState.length - 1 - i}`);
   }, [events, currentStep]);
 
   useEffect(() => {
@@ -80,8 +75,8 @@ function PrimaryVisualization({ events }) {
 
   return (
     <div className="card shadow-sm p-3">
-      <h3 className="card-title text-primary mb-3">Array Visualization</h3>
-      <svg ref={svgRef} className="border border-secondary" style={{ minHeight: '120px' }}></svg>
+      <h3 className="card-title text-primary mb-3">Stack Visualization</h3>
+      <svg ref={svgRef} className="border border-secondary" style={{ minHeight: '300px' }}></svg>
       <div className="d-flex gap-2 mt-3">
         <button className="btn btn-primary" onClick={() => setCurrentStep((prev) => Math.max(0, prev - 1))}>
           Previous
@@ -94,4 +89,4 @@ function PrimaryVisualization({ events }) {
   );
 }
 
-export default PrimaryVisualization;
+export default StackVisualization;

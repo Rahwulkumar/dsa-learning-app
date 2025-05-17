@@ -70,14 +70,14 @@ function SortingVisualization({ events }) {
   }, [events]);
 
   return (
-    <div className="sorting-visualization">
-      <h3>Sorting Visualization</h3>
-      <svg ref={svgRef} style={{ border: '1px solid #ccc', minHeight: '120px' }}></svg>
-      <div className="controls">
-        <button onClick={() => setCurrentStep((prev) => Math.max(0, prev - 1))}>
+    <div className="card shadow-sm p-3">
+      <h3 className="card-title text-primary mb-3">Sorting Visualization</h3>
+      <svg ref={svgRef} className="border border-secondary" style={{ minHeight: '120px' }}></svg>
+      <div className="d-flex gap-2 mt-3">
+        <button className="btn btn-primary" onClick={() => setCurrentStep((prev) => Math.max(0, prev - 1))}>
           Previous
         </button>
-        <button onClick={() => setCurrentStep((prev) => (prev + 1) % events.length)}>
+        <button className="btn btn-primary" onClick={() => setCurrentStep((prev) => (prev + 1) % events.length)}>
           Next
         </button>
       </div>

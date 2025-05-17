@@ -6,33 +6,31 @@
   padding: 20px;
 }
 
-header {
-  text-align: center;
-  margin-bottom: 30px;
+/* Override Bootstrap colors for vibrant UI */
+:root {
+  --bs-primary: #6B48FF;
+  /* Purple */
+  --bs-info: #00D4FF;
+  /* Cyan */
+  --bs-warning: #FFD166;
+  /* Yellow */
+  --bs-primary-rgb: 107, 72, 255;
+  --bs-info-rgb: 0, 212, 255;
+  --bs-warning-rgb: 255, 209, 102;
 }
 
-header h1 {
-  color: #6B48FF;
-  font-weight: 700;
-  margin-bottom: 10px;
+/* Ensure buttons use vibrant colors */
+.btn-primary:hover {
+  background-color: #5439CC;
+  border-color: #5439CC;
 }
 
-nav {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
+.btn-info {
+  color: #1A1A3D;
 }
 
-.nav-link {
-  color: #00D4FF;
-  font-weight: 500;
-  text-decoration: none;
-  padding: 8px 16px;
-  border-radius: 8px;
-  transition: background-color 0.3s ease;
-}
-
-.nav-link:hover {
-  background-color: #6B48FF;
-  color: white;
+.btn-info:hover {
+  background-color: #00BFFF;
+  border-color: #00BFFF;
+  color: #1A1A3D;
 }

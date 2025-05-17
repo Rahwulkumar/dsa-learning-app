@@ -1,39 +1,31 @@
 // src/pages/Home.jsx
-import { useState } from 'react';
-import DataStructureSelector from '../components/DataStructureSelector/DataStructureSelector';
-import PrimaryVisualization from '../components/PrimaryVisualization/PrimaryVisualization';
-import LinkedListVisualization from '../components/LinkedListVisualization/LinkedListVisualization';
-import SortingVisualization from '../components/SortingVisualization/SortingVisualization';
-import SearchingVisualization from '../components/SearchingVisualization/SearchingVisualization';
-import './Home.css';
+import { Link } from 'react-router-dom';
 
 function Home() {
-  const [events, setEvents] = useState([]);
-  const [selectedStructure, setSelectedStructure] = useState('array');
-
-  const handleOperation = (newEvents) => {
-    setEvents(newEvents);
-  };
-
-  const handleStructureChange = (structure) => {
-    setSelectedStructure(structure);
-    setEvents([]);
-  };
+  const categories = [
+    { name: 'Array', path: '/array' },
+    { name: 'Linked List', path: '/linked-list' },
+    { name: 'Stack', path: '/stack' },
+    { name: 'Queue', path: '/queue' },
+    { name: 'Sorting', path: '/sorting' },
+    { name: 'Searching', path: '/searching' },
+  ];
 
   return (
-    <div className="home">
-      <h2>Data Structure Visualizations</h2>
-      <div className="home-container">
-        <DataStructureSelector
-          onOperation={handleOperation}
-          onStructureChange={handleStructureChange}
-        />
-        <div className="visualization-area">
-          {selectedStructure === 'array' && <PrimaryVisualization events={events} />}
-          {selectedStructure === 'linked_list' && <LinkedListVisualization events={events} />}
-          {selectedStructure === 'sorting' && <SortingVisualization events={events} />}
-          {selectedStructure === 'searching' && <SearchingVisualization events={events} />}
-        </div>
+    <div className="container">
+      <h2 className="text-center text-primary fw-bold mb-5">Data Structure Visualizations</h2>
+      <div className="row row-cols-1 row-cols-md-3 g-4">
+        {categories.map((category) => (
+          <div className="col" key={category.name}>
+            <Link to={category.path} className="text-decoration-none">
+              <div className="card h-100 shadow-sm text-center">
+                <div className="card-body">
+                  <h3 className="card-title text-primary">{category.name}</h3>
+                </div>
+              </div>
+            </Link>
+          </div>
+        ))}
       </div>
     </div>
   );

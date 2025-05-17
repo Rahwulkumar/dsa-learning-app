@@ -1,25 +1,19 @@
-// src/components/PrimaryVisualization/PrimaryVisualization.jsx
+// src/components/QueueVisualization/QueueVisualization.jsx
 import { useEffect, useRef, useState } from 'react';
 import * as d3 from 'd3';
-import './PrimaryVisualization.css';
+import './QueueVisualization.css';
 
-function PrimaryVisualization({ events }) {
+function QueueVisualization({ events }) {
   const svgRef = useRef();
   const [currentStep, setCurrentStep] = useState(0);
 
   useEffect(() => {
     if (!events || events.length === 0) return;
 
-    const event = events[currentStep % events.length];
-    let arrayState = event.type === 'array_state' ? event.data : [];
-    let highlightIndex = null;
-    let highlightColor = '#FFD166'; // Default yellow for search/update
-
-    if (event.type === 'highlight') {
-      arrayState = events.find(e => e.type === 'array_state')?.data || [];
-      highlightIndex = event.index;
-      if (event.action === 'search' && highlightIndex === null) {
-        highlightColor = '#FF5555'; // Red if not found
+    let queueState = [];
+    for (let i = 0; i <= currentStep && i < events.length; i++) {
+      if (events[i].type === 'queue_state') {
+        queueState = events[i].data;
       }
     }
 
@@ -35,7 +29,7 @@ function PrimaryVisualization({ events }) {
 
     const boxes = svg
       .selectAll('g')
-      .data(arrayState)
+      .data(queueState)
       .join('g')
       .attr('transform', (d, i) => `translate(${margin.left + i * (boxSize + 5)}, ${margin.top})`);
 
@@ -43,7 +37,7 @@ function PrimaryVisualization({ events }) {
       .append('rect')
       .attr('width', boxSize)
       .attr('height', boxSize)
-      .attr('fill', (d, i) => (i === highlightIndex ? highlightColor : '#00D4FF'))
+      .attr('fill', '#00D4FF')
       .attr('stroke', '#1A1A3D')
       .attr('stroke-width', 2)
       .transition()
@@ -67,7 +61,7 @@ function PrimaryVisualization({ events }) {
       .attr('text-anchor', 'middle')
       .attr('fill', '#6B48FF')
       .attr('font-size', '12px')
-      .text((d, i) => i);
+      .text((d, i) => `Index: ${i}`);
   }, [events, currentStep]);
 
   useEffect(() => {
@@ -80,7 +74,7 @@ function PrimaryVisualization({ events }) {
 
   return (
     <div className="card shadow-sm p-3">
-      <h3 className="card-title text-primary mb-3">Array Visualization</h3>
+      <h3 className="card-title text-primary mb-3">Queue Visualization</h3>
       <svg ref={svgRef} className="border border-secondary" style={{ minHeight: '120px' }}></svg>
       <div className="d-flex gap-2 mt-3">
         <button className="btn btn-primary" onClick={() => setCurrentStep((prev) => Math.max(0, prev - 1))}>
@@ -94,4 +88,4 @@ function PrimaryVisualization({ events }) {
   );
 }
 
-export default PrimaryVisualization;
+export default QueueVisualization;

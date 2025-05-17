@@ -10,10 +10,16 @@ function LinkedListVisualization({ events }) {
   useEffect(() => {
     if (!events || events.length === 0) return;
 
-    let listState = [];
-    for (let i = 0; i <= currentStep && i < events.length; i++) {
-      if (events[i].type === 'list_state') {
-        listState = events[i].data;
+    const event = events[currentStep % events.length];
+    let listState = event.type === 'list_state' ? event.data : [];
+    let highlightIndex = null;
+    let highlightColor = '#FFD166'; // Default yellow for search/update
+
+    if (event.type === 'highlight') {
+      listState = events.find(e => e.type === 'list_state')?.data || [];
+      highlightIndex = event.index;
+      if (event.action === 'search' && highlightIndex === null) {
+        highlightColor = '#FF5555'; // Red if not found
       }
     }
 
@@ -36,7 +42,7 @@ function LinkedListVisualization({ events }) {
     nodes
       .append('circle')
       .attr('r', nodeSize / 2)
-      .attr('fill', '#00D4FF')
+      .attr('fill', (d, i) => (i === highlightIndex ? highlightColor : '#00D4FF'))
       .attr('stroke', '#1A1A3D')
       .attr('stroke-width', 2)
       .transition()
@@ -86,14 +92,14 @@ function LinkedListVisualization({ events }) {
   }, [events]);
 
   return (
-    <div className="linked-list-visualization">
-      <h3>Linked List Visualization</h3>
-      <svg ref={svgRef} style={{ border: '1px solid #ccc', minHeight: '120px' }}></svg>
-      <div className="controls">
-        <button onClick={() => setCurrentStep((prev) => Math.max(0, prev - 1))}>
+    <div className="card shadow-sm p-3">
+      <h3 className="card-title text-primary mb-3">Linked List Visualization</h3>
+      <svg ref={svgRef} className="border border-secondary" style={{ minHeight: '120px' }}></svg>
+      <div className="d-flex gap-2 mt-3">
+        <button className="btn btn-primary" onClick={() => setCurrentStep((prev) => Math.max(0, prev - 1))}>
           Previous
         </button>
-        <button onClick={() => setCurrentStep((prev) => (prev + 1) % events.length)}>
+        <button className="btn btn-primary" onClick={() => setCurrentStep((prev) => (prev + 1) % events.length)}>
           Next
         </button>
       </div>
