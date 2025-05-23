@@ -2,3 +2,57 @@
 /* Keep only D3-specific styles */
 svg.border {
     border: 1px solid #ccc; }
+
+.card {
+  overflow-x: auto;
+}
+
+.card svg {
+  display: block;
+} 
+ 
+
+.visualization-card {
+  width: 100%;
+  overflow: hidden;
+  background: #F8FAFC; /* Off-White */
+  border: 1px solid #D3D3D3; /* Light Gray */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  transition: transform 0.5s ease, opacity 0.3s ease; /* For the slide transition */
+}
+
+.visualization-wrapper {
+  width: 100%;
+  max-width: 600px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+.visualization-wrapper svg {
+  display: block;
+}
+
+/* Scrollbar styles */
+.visualization-wrapper::-webkit-scrollbar {
+  height: 8px;
+}
+
+.visualization-wrapper::-webkit-scrollbar-track {
+  background: #D3D3D3; /* Light Gray */
+}
+
+.visualization-wrapper::-webkit-scrollbar-thumb {
+  background: #666666; /* Medium Gray */
+  border-radius: 4px;
+}
+
+.visualization-wrapper::-webkit-scrollbar-thumb:hover {
+  background: #26A69A; /* Teal */
+}
+
+/* Visualization card title */
+.visualization-card .card-title {
+  color: #2D2D2D; /* Charcoal */
+}

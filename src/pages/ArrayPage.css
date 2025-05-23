@@ -1,0 +1,140 @@
+/* General container */
+.container {
+  background: #F8FAFC; /* Off-White background */
+  padding: 20px;
+  min-height: 100vh;
+}
+
+/* Header */
+.header {
+  background: linear-gradient(135deg, #2D2D2D 0%, #4A4A4A 100%); /* Charcoal gradient */
+  color: #F8FAFC; /* Off-White text */
+  padding: 15px 0;
+  border-radius: 5px;
+  margin-bottom: 30px;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Operations column */
+.operations-column {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.operations-column .card {
+  background: #F8FAFC; /* Off-White */
+  border: 1px solid #D3D3D3; /* Light Gray */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
+
+.operations-column h4 {
+  color: #2D2D2D; /* Charcoal */
+}
+
+.operations-column .form-control {
+  max-width: 100%;
+  color: #666666; /* Medium Gray */
+  border-color: #D3D3D3; /* Light Gray */
+}
+
+.operations-column .form-control::placeholder {
+  color: #999999;
+}
+
+.operations-column .btn-primary {
+  background: #2D2D2D; /* Charcoal */
+  border: none;
+  color: #F8FAFC; /* Off-White */
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.operations-column .btn-primary:hover {
+  background: #26A69A; /* Teal */
+  transform: scale(1.05);
+}
+
+.operations-column .btn-primary:disabled {
+  background: #666666; /* Medium Gray */
+  opacity: 0.6;
+}
+
+.operations-column .text-danger {
+  color: #FF5555; /* Keep existing error color */
+}
+
+.operations-column .text-warning {
+  color: #FF9800; /* Keep existing warning color */
+}
+
+.operations-column p {
+  color: #666666; /* Medium Gray */
+}
+
+@media (max-width: 767px) {
+  .operations-column .form-control {
+    width: 100% !important;
+  }
+}
+
+/* Visualization column */
+.visualization-column {
+  min-width: 620px;
+}
+
+@media (max-width: 767px) {
+  .visualization-column {
+    min-width: 0;
+  }
+}
+
+/* Custom toggle styles */
+.toggle-wrapper {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  margin-bottom: 15px;
+}
+
+.toggle-icon {
+  margin-right: 5px;
+  transition: transform 0.3s ease;
+}
+
+.toggle-icon.enabled {
+  transform: rotate(180deg);
+}
+
+.toggle-wrapper:hover .toggle-icon {
+  transform: scale(1.1);
+}
+
+.toggle-wrapper:hover .toggle-icon.enabled {
+  transform: scale(1.1) rotate(180deg);
+}
+
+.toggle-label {
+  color: #666666; /* Medium Gray */
+  font-size: 14px;
+}
+
+.toggle-label.enabled {
+  color: #26A69A; /* Teal */
+}
+
+/* TracePanel wrapper */
+.trace-panel-wrapper {
+  margin-top: 20px;
+  margin-bottom: 40px; /* Increased spacing compared to mb-3 (1rem) */
+}
+
+.fade-in {
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.trace-panel-wrapper:not(.fade-in) {
+  opacity: 0;
+}
+

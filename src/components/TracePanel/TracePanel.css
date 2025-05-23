@@ -1,0 +1,72 @@
+.trace-panel {
+  margin-top: 20px;
+  padding: 15px;
+  border: 1px solid #D3D3D3; /* Light Gray */
+  border-radius: 5px;
+  background-color: #F8FAFC; /* Off-White */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: opacity 0.3s ease; /* For the fade transition */
+}
+
+.trace-title {
+  margin-bottom: 10px;
+  color: #2D2D2D; /* Charcoal */
+}
+
+.trace-steps {
+  padding-left: 20px;
+  margin-bottom: 15px;
+}
+
+.trace-step {
+  margin-bottom: 5px;
+  font-size: 14px;
+  color: #2D2D2D; /* Charcoal */
+}
+
+.trace-step.active {
+  background-color: #26A69A; /* Teal */
+  color: #F8FAFC; /* Off-White */
+  padding: 2px 5px;
+  border-radius: 3px;
+}
+
+.time-complexity {
+  font-style: italic;
+  margin-bottom: 15px;
+  color: #666666; /* Medium Gray */
+}
+
+.trace-controls {
+  display: flex;
+  gap: 10px;
+}
+
+.trace-controls .btn-secondary {
+  background: #2D2D2D; /* Charcoal */
+  color: #F8FAFC; /* Off-White */
+  border: none;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.trace-controls .btn-secondary:hover {
+  background: #26A69A; /* Teal */
+  transform: scale(1.05);
+}
+
+.trace-controls .btn-secondary:disabled {
+  background: #666666; /* Medium Gray */
+  opacity: 0.6;
+}
+
+.trace-controls .btn-primary {
+  background: #2D2D2D; /* Charcoal */
+  color: #F8FAFC; /* Off-White */
+  border: none;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.trace-controls .btn-primary:hover {
+  background: #26A69A; /* Teal */
+  transform: scale(1.05);
+}
